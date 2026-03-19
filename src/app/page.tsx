@@ -1,65 +1,488 @@
-import Image from "next/image";
+"use client";
+
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Link from "next/link";
+import Button from "@/components/ui/Button";
+import GlassCard from "@/components/ui/GlassCard";
+import SectionHeader from "@/components/ui/SectionHeader";
+import InvestorForm from "@/components/forms/InvestorForm";
+import { 
+  TrendingUp, 
+  Users, 
+  Globe, 
+  ShieldCheck, 
+  Zap, 
+  BarChart3, 
+  ExternalLink,
+  ChevronRight,
+  Network,
+  Mail,
+  Fingerprint,
+  Award,
+  ShieldAlert
+} from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen">
+      <Header />
+      <Hero />
+
+      {/* 2. El Problema */}
+      <section id="el-problema" className="py-24 bg-white/5 relative">
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            title="El Mercado Desatendido"
+            subtitle="La brecha digital y la informalidad en Centroamérica representan una oportunidad masiva para el primer ecosistema B2B totalmente integrado."
+          />
+
+          <div className="grid md:grid-rows-1 md:grid-cols-3 gap-8">
+            {[
+              { label: "Informalidad (GT)", value: "71.1%", detail: "Operan fuera del sistema formal" },
+              { label: "Falta de Crédito (GT)", value: "87%", detail: "MIPYMES sin financiamiento" },
+              { label: "Brecha Digital (ES)", value: "50%", detail: "Desconexión tecnológica total" }
+            ].map((stat, i) => (
+              <GlassCard key={i} className="p-8 hover:border-electric-cyan/50">
+                <div className="text-4xl font-bold text-electric-cyan mb-2">{stat.value}</div>
+                <div className="text-lg font-semibold text-white mb-1">{stat.label}</div>
+                <div className="text-gray-400 text-sm">{stat.detail}</div>
+              </GlassCard>
+            ))}
+          </div>
+
+          <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-electric-cyan/20 to-deep-blue/20 border border-white/10 text-center">
+            <p className="text-2xl font-semibold">
+              "El mercado cautivo informal es hasta <span className="text-electric-cyan">3 veces más grande</span> que el mercado formal."
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 3. La Solución (Product Tiers) */}
+      <section id="solución" className="py-24">
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            title="Ecosistema Infinito"
+            subtitle="Soluciones SaaS escalables para cada etapa del negocio."
+          />
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Digitalización */}
+            <GlassCard className="flex flex-col">
+              <div className="mb-6"><Zap className="w-10 h-10 text-electric-cyan" /></div>
+              <h3 className="text-2xl font-bold mb-2">Digitalización</h3>
+              <div className="text-3xl font-bold text-white mb-4">$19.99<span className="text-sm text-gray-400">/mes</span></div>
+              <ul className="mb-8 space-y-4 flex-grow">
+                {["Facturación Electrónica", "Gestión de Inventarios", "POS & ERP", "Ventanilla Única"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
+                    <ShieldCheck className="w-4 h-4 text-electric-cyan" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <Button variant="outline" className="border-electric-cyan/30 text-electric-cyan hover:bg-electric-cyan hover:text-white">
+                Saber más
+              </Button>
+            </GlassCard>
+
+            {/* Evolución */}
+            <div className="p-8 rounded-3xl bg-electric-cyan/10 border-2 border-electric-cyan flex flex-col transform md:-translate-y-4 shadow-[0_0_40px_rgba(6,182,212,0.2)]">
+              <div className="mb-6 text-electric-cyan font-bold tracking-widest uppercase text-xs">Más Popular</div>
+              <div className="mb-6"><TrendingUp className="w-10 h-10 text-white" /></div>
+              <h3 className="text-2xl font-bold mb-2 text-white">Evolución</h3>
+              <div className="text-3xl font-bold text-white mb-4">$49.99+ <span className="text-sm text-white/60">/mes</span></div>
+              <ul className="mb-8 space-y-4 flex-grow">
+                {["Gestión Contable", "Gestión Fiscal", "Bancarización", "Créditos MIPYME"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-white/90 text-sm">
+                    <ShieldCheck className="w-4 h-4 text-white" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <Button variant="white" className="w-full">
+                Ver Planes
+              </Button>
+            </div>
+
+            {/* Revolución */}
+            <GlassCard className="flex flex-col">
+              <div className="mb-6"><Globe className="w-10 h-10 text-cyan-400" /></div>
+              <h3 className="text-2xl font-bold mb-2">Revolución</h3>
+              <div className="text-3xl font-bold text-white mb-4">$699.99+ <span className="text-sm text-gray-400">/mes</span></div>
+              <ul className="mb-8 space-y-4 flex-grow">
+                {["Inteligencia Artificial", "Auditorías Externas", "Gobierno Corporativo", "Consultores Elite"].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
+                    <ShieldCheck className="w-4 h-4 text-cyan-400" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <Button variant="outline" className="w-full">
+                Contactar Ventas
+              </Button>
+            </GlassCard>
+          </div>
+
+          {/* Specialized Consulting Row (Legacy Sync) */}
+          <div className="mt-16 mb-8 text-center">
+            <h3 className="text-sm font-bold text-electric-cyan uppercase tracking-[0.3em]">Capa de Consultoría Especializada</h3>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group">
+              <div className="flex items-start gap-6">
+                <div className="p-4 rounded-2xl bg-electric-cyan/10 text-electric-cyan group-hover:bg-electric-cyan group-hover:text-white transition-colors">
+                  <Fingerprint className="w-8 h-8" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 text-white">Avalúos de Negocios y Marcas</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                    Determinamos el valor real de su empresa bajo estándares **IPEV**. Esencial para procesos de M&A, levantamiento de capital o blindaje patrimonial.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Valoración Técnica", "Análisis de Intangibles", "Certificación IPEV"].map(tag => (
+                      <span key={tag} className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-gray-400 border border-white/10">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group">
+              <div className="flex items-start gap-6">
+                <div className="p-4 rounded-2xl bg-electric-cyan/10 text-electric-cyan group-hover:bg-electric-cyan group-hover:text-white transition-colors">
+                  <Users className="w-8 h-8" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 text-white">Gestión del Talento & Estrategia</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                    Diseñamos la estructura organizacional para el escalamiento hiper-acelerado. Transformamos el capital humano en una ventaja competitiva medible.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {["Headhunting Elite", "Diseño de OKRs", "Cultura de Alto Desempeño"].map(tag => (
+                      <span key={tag} className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-gray-400 border border-white/10">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* 4. Mercado & Tamaño */}
+      <section id="mercado" className="py-24 bg-gradient-to-b from-space-dark to-deep-blue/20">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8">Oportunidad de Mercado LATAM (2025-2040)</h2>
+              <div className="space-y-6">
+                {[
+                  { label: "TAM (Mercado Total)", value: "$46,258M", width: "w-full", bg: "bg-electric-cyan" },
+                  { label: "SAM (Mercado Accesible)", value: "$17,792M", width: "w-[70%]", bg: "bg-electric-cyan/60" },
+                  { label: "SOM (Mercado Objetivo)", value: "$7,117M", width: "w-[40%]", bg: "bg-electric-cyan/40" },
+                ].map((item) => (
+                  <div key={item.label}>
+                    <div className="flex justify-between mb-2">
+                      <span className="text-sm font-medium text-gray-300">{item.label}</span>
+                      <span className="text-sm font-bold text-white">{item.value}</span>
+                    </div>
+                    <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden">
+                      <div className={`h-full ${item.bg} ${item.width} rounded-full`}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            <div className="space-y-12">
+              <div className="p-6 rounded-2xl bg-electric-cyan/5 border border-electric-cyan/20">
+                <h3 className="text-xl font-bold mb-4">Metodología de Valoración</h3>
+                <p className="text-sm text-gray-400 mb-4 leading-relaxed">
+                  Basado en directrices **IPEV**. Valuación superior al 98% de empresas comparables en Crunchbase.
+                </p>
+                <div className="space-y-2 mb-6">
+                  {[
+                    { m: "DCF (Múltiplos)", p: "40%", v: "$305.6M" },
+                    { m: "DCF (Largo Plazo)", p: "40%", v: "$330.0M" },
+                    { m: "Venture Capital Method", p: "20%", v: "$465.1M" }
+                  ].map((item) => (
+                    <div key={item.m} className="flex justify-between text-xs border-b border-white/5 pb-2">
+                      <span className="text-gray-500">{item.m} ({item.p})</span>
+                      <span className="text-electric-cyan font-bold">{item.v}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <h3 className="text-xl font-bold mb-4">Uso de los Fondos ($1.05M)</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { l: "Operaciones", p: "33%" },
+                    { l: "Ventas & Mkt", p: "27%" },
+                    { l: "I+D (R&D)", p: "18%" },
+                    { l: "Otros", p: "8%" },
+                    { l: "CapEx", p: "7%" },
+                    { l: "Inventario", p: "6%" }
+                  ].map((fund) => (
+                    <div key={fund.l} className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-electric-cyan/30 transition-colors">
+                      <div className="text-[10px] uppercase text-gray-500 font-bold">{fund.l}</div>
+                      <div className="text-lg font-bold text-white">{fund.p}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+              <GlassCard className="p-6 text-center">
+                <div className="text-3xl font-bold text-electric-cyan mb-1">14</div>
+                <div className="text-xs text-gray-400 uppercase tracking-wider">Países</div>
+              </GlassCard>
+              <GlassCard className="p-6 text-center">
+                <div className="text-3xl font-bold text-electric-cyan mb-1">3</div>
+                <div className="text-xs text-gray-400 uppercase tracking-wider">Continentes</div>
+              </GlassCard>
+              <GlassCard className="col-span-2 p-6 border-electric-cyan/20 flex items-center justify-between">
+                <span className="text-sm font-semibold">Expansión Proyectada 2034</span>
+                <ChevronRight className="w-5 h-5 text-electric-cyan" />
+              </GlassCard>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Finanzas & Tracción */}
+      <section id="finanzas" className="py-24">
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            title="Crecimiento y Rentabilidad"
+            subtitle="Proyecciones financieras certificadas y tracción real."
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {[
+              { label: "Valoración Pre-Money", value: "$347.3M", sub: "Equidam Certified" },
+              { label: "Revenue Proy. 2027", value: "$157M", sub: "Hiper-crecimiento" },
+              { label: "Margen EBITDA 2027", value: "86%", sub: "Año 3 Optimizado" },
+              { label: "Revenue 2024", value: "$592K", sub: "Tracción Real" }
+            ].map((stat, i) => (
+              <GlassCard key={i} className="p-6 border-l-4 border-l-electric-cyan">
+                <div className="text-xs text-gray-400 uppercase font-bold mb-2">{stat.label}</div>
+                <div className="text-3xl font-extrabold text-white mb-1">{stat.value}</div>
+                <div className="text-xs text-electric-cyan font-medium">{stat.sub}</div>
+              </GlassCard>
+            ))}
+          </div>
+
+          <div className="p-1 rounded-3xl bg-gradient-to-r from-electric-cyan via-deep-blue to-electric-cyan">
+            <div className="bg-space-dark rounded-[22px] p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">Tracción Hiper-acelerada</h3>
+                  <p className="text-gray-400 mb-8 leading-relaxed">
+                    GrupoInfinitoIA ha validado su modelo con un **Margen EBITDA del 65%** en 2024. Proyectamos un escalamiento a **$50.3M EBITDA** en 2026 y **$135M** para finales de 2027.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6 mb-8">
+                    <div>
+                      <div className="text-gray-500 text-xs uppercase mb-1">Ingresos 2025</div>
+                      <div className="text-xl font-bold text-white">$6.78M</div>
+                    </div>
+                    <div>
+                      <div className="text-gray-500 text-xs uppercase mb-1">Ingresos 2026</div>
+                      <div className="text-xl font-bold text-white">$65.2M</div>
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <Button variant="ghost" className="text-electric-cyan gap-2 px-0 hover:bg-transparent hover:text-cyan-glow">
+                      Ver Reporte Equidam 2025 <ExternalLink className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center p-8 bg-white/5 rounded-2xl">
+                   <BarChart3 className="w-48 h-48 text-electric-cyan/20" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Universo Infinito - Trust Layer (Legacy Sync) */}
+      <section className="py-24 relative overflow-hidden bg-white/[0.01]">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-electric-cyan/30 to-transparent"></div>
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Universo Infinito</h2>
+            <p className="text-gray-400 text-sm tracking-widest uppercase">Legado de confianza y resultados en la región</p>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {[
+              { label: "Experiencia Acumulada", val: "+20 Años", icon: Zap, desc: "Liderando la formalización y el crecimiento empresarial en la región." },
+              { label: "Especialistas Infinitos", val: "+50", icon: Users, desc: "Un equipo multidisciplinario de expertos en finanzas, tecnología y talento." },
+              { label: "Proyectos Exitosos", val: "+500", icon: ShieldCheck, desc: "Empresas transformadas, bancarizadas y escaladas con éxito." }
+            ].map((item, i) => (
+              <div key={i} className="text-center p-10 rounded-[40px] bg-white/[0.03] border border-white/5 hover:border-electric-cyan/20 transition-all group">
+                <div className="mx-auto w-14 h-14 rounded-2xl bg-electric-cyan/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <item.icon className="w-7 h-7 text-electric-cyan" />
+                </div>
+                <div className="text-4xl font-black text-white mb-2">{item.val}</div>
+                <div className="text-sm font-bold text-electric-cyan uppercase tracking-[0.2em] mb-4">{item.label}</div>
+                <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-8 rounded-[32px] bg-electric-cyan/5 border border-electric-cyan/20 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-6">
+              <div className="p-4 rounded-2xl bg-electric-cyan/20 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                <ShieldAlert className="w-8 h-8 text-electric-cyan" />
+              </div>
+              <div>
+                <h4 className="font-bold text-white uppercase tracking-wider text-sm mb-1">Seguridad & Protección de Datos</h4>
+                <p className="text-xs text-gray-400 max-w-md">Trabajamos bajo los protocolos de seguridad más estrictos para garantizar la integridad total de su información patrimonial y corporativa.</p>
+              </div>
+            </div>
+            <Button variant="outline" size="sm" className="border-electric-cyan/30 text-electric-cyan hover:bg-electric-cyan hover:text-white transition-all">
+              Ver Protocolos
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Social Proof (Logos Placeholder) */}
+      <section className="py-16 border-y border-white/5 bg-white/[0.02]">
+        <div className="container mx-auto px-6">
+          <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-[0.2em] mb-12">Alianzas Estratégicas y Respaldo</p>
+          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all">
+            {["Millicom (Tigo)", "BAC Credomatic", "Davivienda", "CONAMYPE", "BID Lab", "Fedecrédito"].map((name) => (
+              <div key={name} className="text-xl md:text-2xl font-bold text-white tracking-tighter">{name}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Oferta de Inversión */}
+      <section id="propuesta" className="py-24">
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            title="Ronda de Inversión Actual"
+            subtitle="Oportunidades exclusivas de participación en el capital."
+          />
+
+          <div className="grid lg:grid-cols-4 gap-6">
+            {/* Seed Round */}
+            <div className="p-8 rounded-3xl border-2 border-electric-cyan bg-electric-cyan/5 col-span-1 lg:col-span-1 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl font-bold mb-2">Ronda Semilla</h3>
+                <div className="text-3xl font-bold text-white mb-2">$1,050,000<span className="text-sm font-normal text-gray-400"> USD</span></div>
+                <div className="text-xs text-electric-cyan/80 font-medium mb-6 uppercase tracking-widest">Valuación Post-Money: $348.3M</div>
+                <div className="p-4 rounded-xl bg-electric-cyan/20 mb-6">
+                  <div className="text-xs font-bold text-electric-cyan uppercase mb-1">Equity</div>
+                  <div className="text-2xl font-bold text-white">0.30%</div>
+                </div>
+              </div>
+              <Button variant="primary" glow className="w-full py-4 text-base">
+                 Solicitar Términos
+              </Button>
+            </div>
+
+            {/* Expansion GT - 3 options */}
+            {[
+              { type: "Certificado Corto Plazo", val: "$20,000", roi: "12% - 20%", term: "24 meses" },
+              { type: "Certificado Mediano Plazo", val: "$150,000", roi: "15% - 25%", term: "36 meses" },
+              { type: "Certificado Largo Plazo", val: "$300,000", roi: "18% - 30%", term: "48 meses" }
+            ].map((opt, i) => (
+              <GlassCard key={i} className="p-8">
+                 <h3 className="text-lg font-bold mb-2 text-gray-300">{opt.type}</h3>
+                 <div className="text-2xl font-bold text-white mb-6">{opt.val}<span className="text-sm font-normal text-gray-400"> USD</span></div>
+                 <div className="space-y-4 mb-8">
+                    <div className="flex justify-between text-sm">
+                       <span className="text-gray-400">ROI Proyectado</span>
+                       <span className="text-electric-cyan font-bold">{opt.roi}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                       <span className="text-gray-400">Opción de Compra</span>
+                       <span className="text-white">{opt.term}</span>
+                    </div>
+                 </div>
+                 <Button variant="outline" className="w-full">
+                    Me Interesa
+                 </Button>
+              </GlassCard>
+            ))}
+          </div>
+
+          <div className="mt-20 p-12 rounded-[40px] bg-gradient-to-br from-space-dark to-electric-cyan/20 border border-white/5 text-center">
+             <h3 className="text-2xl font-bold mb-6">Estrategia de Salida (Exit)</h3>
+             <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  { title: "M&A", desc: "Venta a gigantes del Fintech o Tech Global" },
+                  { title: "Buyback", desc: "Programa de recompra institucional" },
+                  { title: "Dividendos", desc: "Retornos proyectados x4 a x6 (5-7 años)" }
+                ].map((exit) => (
+                  <div key={exit.title}>
+                    <div className="text-electric-cyan font-black text-3xl mb-2">{exit.title}</div>
+                    <p className="text-sm text-gray-400">{exit.desc}</p>
+                  </div>
+                ))}
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Contact & Next Steps (Council Addition) */}
+      <section id="contacto" className="py-24 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-electric-cyan/20 to-transparent"></div>
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            title="Inicia tu Participación"
+            subtitle="¿Listo para unirte a la revolución tecnológica de la región? Completa el formulario para recibir el dossier detallado de inversión y una llamada de nuestro equipo estratégico."
+          />
+          <InvestorForm />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-white/10">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <Network className="w-6 h-6 text-electric-cyan" />
+                <span className="font-bold text-xl tracking-tighter">GrupoInfinito<span className="text-electric-cyan">IA</span></span>
+              </div>
+              <p className="text-gray-500 text-sm max-w-xs leading-relaxed">
+                El ecosistema empresarial definitivo para la formalización y digitalización en LATAM.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-12">
+              <div>
+                <h5 className="text-white font-bold mb-4 uppercase text-xs tracking-widest">Sede El Salvador</h5>
+                <p className="text-gray-500 text-xs leading-relaxed">
+                  World Trade Center Torre Futura,<br />
+                  89 Av. Norte y Calle El Mirador,<br />
+                  San Salvador, El Salvador.<br />
+                  Tel: +(503) 2254-6506
+                </p>
+              </div>
+              <div>
+                <h5 className="text-white font-bold mb-4 uppercase text-xs tracking-widest">Sede Guatemala</h5>
+                <p className="text-gray-500 text-xs leading-relaxed">
+                  Hub de Expansión Tecnológica,<br />
+                  Ciudad de Guatemala,<br />
+                  Guatemala.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex gap-8 text-xs text-gray-500">
+              <Link href="#" className="hover:text-white">Aviso Legal</Link>
+              <Link href="#" className="hover:text-white">Privacidad</Link>
+              <Link href="#" className="hover:text-white">Relación con Inversores</Link>
+            </div>
+            <div className="text-gray-600 text-[10px] italic">
+              "Humanizando la tecnología en la región. Fundada en 2020. GrupoInfinitoIA &copy; 2025"
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
