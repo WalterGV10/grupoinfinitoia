@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Network, Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import Button from "./ui/Button";
+import Logo from "./ui/Logo";
 
 const NAV_ITEMS = [
   "El Problema",
@@ -36,13 +37,19 @@ export default function Header() {
     >
       <div className={`container mx-auto px-6 flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-16" : "h-20"}`}>
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group relative z-50" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="p-2 rounded-lg bg-electric-cyan/10 border border-electric-cyan/20 group-hover:bg-electric-cyan/20 group-hover:border-electric-cyan/40 transition-all duration-300 group-hover:scale-105 group-active:scale-95">
-            <Network className="w-5 h-5 text-electric-cyan group-hover:drop-shadow-[0_0_8px_rgba(0,255,255,0.8)] transition-all" />
+        <Link href="/" className="flex items-center gap-3 group relative z-50" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="relative">
+            <div className="absolute -inset-1 bg-electric-cyan/20 rounded-full blur-md group-hover:bg-electric-cyan/40 transition-all duration-300 opacity-0 group-hover:opacity-100" />
+            <Logo className="w-10 h-10 relative transition-transform duration-500 group-hover:rotate-12" />
           </div>
-          <span className="text-xl font-bold tracking-tight text-white group-hover:text-electric-cyan transition-colors duration-300">
-            GrupoInfinito<span className="text-electric-cyan group-hover:text-white transition-colors duration-300">IA</span>
-          </span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold tracking-tighter text-white leading-none">
+              GrupoInfinito<span className="text-electric-cyan">IA</span>
+            </span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-medium group-hover:text-electric-cyan/70 transition-colors duration-300">
+              Future of B2B
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}

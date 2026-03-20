@@ -27,7 +27,7 @@ const itemVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-space-dark">
+    <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 overflow-hidden bg-space-dark">
       {/* Galaxy Background */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-80">
         <Galaxy 
