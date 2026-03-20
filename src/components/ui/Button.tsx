@@ -32,10 +32,10 @@ export default function Button({
   };
 
   const glows = {
-    primary: "hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]",
-    outline: "hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]",
+    primary: "shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_40px_rgba(6,182,212,0.7)] hover:bg-electric-cyan",
+    outline: "hover:shadow-[0_0_25px_rgba(255,255,255,0.15)]",
     ghost: "",
-    white: "hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]",
+    white: "hover:shadow-[0_0_40px_rgba(255,255,255,0.5)]",
   };
 
   const sizes = {

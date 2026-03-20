@@ -33,8 +33,8 @@ export default function SolutionSection() {
           >
             <GlassCard className="flex flex-col h-full [contain:content]">
               <div className="mb-6"><Zap className="w-10 h-10 text-electric-cyan" /></div>
-              <h3 className="text-2xl font-bold mb-2">Digitalización</h3>
-              <div className="text-3xl font-bold text-white mb-4">$19.99<span className="text-sm text-gray-400">/mes</span></div>
+              <h3 className="text-3xl font-black tracking-tight mb-2">Digitalización</h3>
+              <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4 tracking-tighter">$19.99<span className="text-lg font-medium text-gray-500">/mes</span></div>
               <ul className="mb-8 space-y-4 flex-grow">
                 {["Facturación Electrónica", "Gestión de Inventarios", "POS & ERP", "Ventanilla Única"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
@@ -55,10 +55,10 @@ export default function SolutionSection() {
             viewport={{ once: true }}
             className="p-8 rounded-3xl bg-electric-cyan/10 border-2 border-electric-cyan flex flex-col transform md:-translate-y-4 shadow-[0_0_40px_rgba(6,182,212,0.2)] [contain:content]"
           >
-            <div className="mb-6 text-electric-cyan font-bold tracking-widest uppercase text-xs">Más Popular</div>
-            <div className="mb-6"><TrendingUp className="w-10 h-10 text-white" /></div>
-            <h3 className="text-2xl font-bold mb-2 text-white">Evolución</h3>
-            <div className="text-3xl font-bold text-white mb-4">$49.99+ <span className="text-sm text-white/60">/mes</span></div>
+            <div className="mb-6 text-electric-cyan font-bold tracking-[0.2em] uppercase text-xs animate-pulse">Más Popular</div>
+            <div className="mb-6"><TrendingUp className="w-12 h-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]" /></div>
+            <h3 className="text-3xl font-black tracking-tight mb-2 text-white">Evolución</h3>
+            <div className="text-6xl font-black text-white mb-4 tracking-tighter">$49.99+ <span className="text-lg font-medium text-white/60">/mes</span></div>
             <ul className="mb-8 space-y-4 flex-grow">
               {["Gestión Contable", "Gestión Fiscal", "Bancarización", "Créditos MIPYME"].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-white/90 text-sm">
@@ -79,8 +79,8 @@ export default function SolutionSection() {
           >
             <GlassCard className="flex flex-col h-full [contain:content]">
               <div className="mb-6"><Globe className="w-10 h-10 text-cyan-400" /></div>
-              <h3 className="text-2xl font-bold mb-2">Revolución</h3>
-              <div className="text-3xl font-bold text-white mb-4">$699.99+ <span className="text-sm text-gray-400">/mes</span></div>
+              <h3 className="text-3xl font-black tracking-tight mb-2">Revolución</h3>
+              <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-400 mb-4 tracking-tighter">$699.99<span className="text-lg font-medium text-gray-500">/mes</span></div>
               <ul className="mb-8 space-y-4 flex-grow">
                 {["Inteligencia Artificial", "Auditorías Externas", "Gobierno Corporativo", "Consultores Elite"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">

@@ -30,8 +30,8 @@ export default function InvestmentSection() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-xl font-bold mb-2">Ronda Semilla</h3>
-              <div className="text-3xl font-bold text-white mb-2">$1,050,000<span className="text-sm font-normal text-gray-400"> USD</span></div>
+              <h3 className="text-xl font-bold mb-2 text-gray-300">Ronda Semilla</h3>
+              <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-electric-cyan mb-3 tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">$1,050,000<span className="text-lg font-bold text-gray-400"> USD</span></div>
               <div className="text-xs text-electric-cyan/80 font-medium mb-6 uppercase tracking-widest">Valuación Post-Money: $348.3M</div>
               <div className="p-4 rounded-xl bg-electric-cyan/20 mb-6 text-center">
                 <div className="text-xs font-bold text-electric-cyan uppercase mb-1">Equity</div>
@@ -57,8 +57,8 @@ export default function InvestmentSection() {
               transition={{ delay: i * 0.1 }}
             >
               <GlassCard className="p-8 h-full [contain:content]">
-                <h3 className="text-lg font-bold mb-2 text-gray-300">{opt.type}</h3>
-                <div className="text-2xl font-bold text-white mb-6">{opt.val}<span className="text-sm font-normal text-gray-400"> USD</span></div>
+                <h3 className="text-lg font-bold mb-3 text-electric-cyan">{opt.type}</h3>
+                <div className="text-3xl font-black text-white mb-6 tracking-tight drop-shadow-[0_2px_10px_rgba(6,182,212,0.3)]">{opt.val}<span className="text-sm font-normal text-gray-400"> USD</span></div>
                 <div className="space-y-4 mb-8">
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-400">ROI Proyectado</span>

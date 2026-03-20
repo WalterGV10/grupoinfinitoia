@@ -47,17 +47,17 @@ export default function FinanceSection() {
             { label: "Revenue 2024", value: "$592K", sub: "Tracción Real" }
           ].map((stat, i) => (
             <motion.div key={i} variants={fadeIn}>
-              <GlassCard className="p-6 border-l-4 border-l-electric-cyan h-full">
-                <div className="text-xs text-gray-400 uppercase font-bold mb-2">{stat.label}</div>
-                <div className="text-3xl font-extrabold text-white mb-1">{stat.value}</div>
-                <div className="text-xs text-electric-cyan font-medium">{stat.sub}</div>
+              <GlassCard className="p-8 border-l-4 border-l-electric-cyan h-full group hover:bg-white/10 transition-colors">
+                <div className="text-xs text-gray-400 uppercase tracking-widest font-bold mb-3">{stat.label}</div>
+                <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-electric-cyan mb-2 tracking-tighter group-hover:drop-shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all">{stat.value}</div>
+                <div className="text-xs text-electric-cyan font-bold tracking-wide">{stat.sub}</div>
               </GlassCard>
             </motion.div>
           ))}
         </motion.div>
 
-        <div className="p-1 rounded-3xl bg-gradient-to-r from-electric-cyan via-deep-blue to-electric-cyan">
-          <div className="bg-space-dark rounded-[22px] p-8 md:p-12">
+        <div className="p-[2px] rounded-[32px] bg-gradient-to-r from-electric-cyan via-deep-blue to-electric-cyan shadow-[0_0_40px_rgba(6,182,212,0.2)]">
+          <div className="bg-space-dark rounded-[30px] p-8 md:p-14">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}

@@ -29,9 +29,9 @@ export default function MarketSection() {
                 { label: "SOM (Mercado Objetivo)", value: "$7,117M", width: "40%", bg: "bg-electric-cyan/40" },
               ].map((item, i) => (
                 <div key={item.label}>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-300">{item.label}</span>
-                    <span className="text-sm font-bold text-white">{item.value}</span>
+                  <div className="flex justify-between items-end mb-3">
+                    <span className="text-sm font-medium text-gray-400 tracking-wide">{item.label}</span>
+                    <span className="text-2xl font-black text-white tracking-tighter">{item.value}</span>
                   </div>
                   <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden [contain:paint]">
                     <motion.div 
@@ -80,8 +80,8 @@ export default function MarketSection() {
                     className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-electric-cyan/30 transition-colors"
                     variants={fadeIn}
                   >
-                    <div className="text-[10px] uppercase text-gray-500 font-bold">{fund.l}</div>
-                    <div className="text-lg font-bold text-white">{fund.p}</div>
+                    <div className="text-[10px] uppercase text-gray-500 font-bold tracking-widest mb-1">{fund.l}</div>
+                    <div className="text-xl font-black text-white">{fund.p}</div>
                   </motion.div>
                 ))}
               </div>
