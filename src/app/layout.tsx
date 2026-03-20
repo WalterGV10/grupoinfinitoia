@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://grupoinfinitoia.com"),
   title: "GrupoInfinitoIA | Humanizar la Tecnología en la Región",
   description: "Ecosistema B2B líder en LATAM, exento de impuestos hasta 2040. Estrategia de crecimiento y digitalización empresarial con respaldo de Equidam.",
   openGraph: {
@@ -41,21 +42,41 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "GrupoInfinitoIA",
-  "url": "https://grupoinfinitoia.com",
-  "logo": "https://grupoinfinitoia.com/logo.png",
-  "description": "Ecosistema B2B líder en LATAM, exento de impuestos hasta 2040.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "San Salvador",
-    "addressCountry": "SV"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "Investor Relations",
-    "name": "Antonio Arrué"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "GrupoInfinitoIA",
+      "url": "https://grupoinfinitoia.com",
+      "logo": "https://grupoinfinitoia.com/logo.png",
+      "description": "Ecosistema B2B líder en LATAM, exento de impuestos hasta 2040.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "San Salvador",
+        "addressCountry": "SV"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Investor Relations",
+        "name": "Antonio Arrué"
+      }
+    },
+    {
+      "@type": "InvestmentProduct",
+      "name": "GrupoInfinitoIA Seed Round 2025",
+      "description": "Oportunidad de inversión en el ecosistema B2B de mayor crecimiento en LATAM. Valuación pre-money de $347M.",
+      "offers": {
+        "@type": "Offer",
+        "price": "1050000",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "category": "Equity / Participation"
+      },
+      "issuer": {
+        "@type": "Organization",
+        "name": "GrupoInfinitoIA"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({

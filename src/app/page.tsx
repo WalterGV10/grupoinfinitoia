@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Link from "next/link";
@@ -23,6 +24,24 @@ import {
   ShieldAlert
 } from "lucide-react";
 
+const fadeIn = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8 }
+};
+
+const staggerContainer = {
+  initial: { opacity: 0 },
+  whileInView: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  },
+  viewport: { once: true }
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -30,63 +49,94 @@ export default function Home() {
       <Hero />
 
       {/* 2. El Problema */}
-      <section id="el-problema" className="py-24 bg-white/5 relative">
+      <motion.section 
+        id="el-problema" 
+        className="py-24 bg-white/5 relative"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-6">
           <SectionHeader 
             title="El Mercado Desatendido"
             subtitle="La brecha digital y la informalidad en Centroamérica representan una oportunidad masiva para el primer ecosistema B2B totalmente integrado."
           />
 
-          <div className="grid md:grid-rows-1 md:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid md:grid-rows-1 md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+          >
             {[
               { label: "Informalidad (GT)", value: "71.1%", detail: "Operan fuera del sistema formal" },
               { label: "Falta de Crédito (GT)", value: "87%", detail: "MIPYMES sin financiamiento" },
               { label: "Brecha Digital (ES)", value: "50%", detail: "Desconexión tecnológica total" }
             ].map((stat, i) => (
-              <GlassCard key={i} className="p-8 hover:border-electric-cyan/50">
-                <div className="text-4xl font-bold text-electric-cyan mb-2">{stat.value}</div>
-                <div className="text-lg font-semibold text-white mb-1">{stat.label}</div>
-                <div className="text-gray-400 text-sm">{stat.detail}</div>
-              </GlassCard>
+              <motion.div key={i} variants={fadeIn}>
+                <GlassCard className="p-8 hover:border-electric-cyan/50 h-full">
+                  <div className="text-4xl font-bold text-electric-cyan mb-2">{stat.value}</div>
+                  <div className="text-lg font-semibold text-white mb-1">{stat.label}</div>
+                  <div className="text-gray-400 text-sm">{stat.detail}</div>
+                </GlassCard>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-electric-cyan/20 to-deep-blue/20 border border-white/10 text-center">
+          <motion.div 
+            className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-electric-cyan/20 to-deep-blue/20 border border-white/10 text-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+          >
             <p className="text-2xl font-semibold">
               "El mercado cautivo informal es hasta <span className="text-electric-cyan">3 veces más grande</span> que el mercado formal."
             </p>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 3. La Solución (Product Tiers) */}
       <section id="solución" className="py-24">
         <div className="container mx-auto px-6">
-          <SectionHeader 
-            title="Ecosistema Infinito"
-            subtitle="Soluciones SaaS escalables para cada etapa del negocio."
-          />
+          <motion.div {...fadeIn}>
+            <SectionHeader 
+              title="Ecosistema Infinito"
+              subtitle="Soluciones SaaS escalables para cada etapa del negocio."
+            />
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Digitalización */}
-            <GlassCard className="flex flex-col">
-              <div className="mb-6"><Zap className="w-10 h-10 text-electric-cyan" /></div>
-              <h3 className="text-2xl font-bold mb-2">Digitalización</h3>
-              <div className="text-3xl font-bold text-white mb-4">$19.99<span className="text-sm text-gray-400">/mes</span></div>
-              <ul className="mb-8 space-y-4 flex-grow">
-                {["Facturación Electrónica", "Gestión de Inventarios", "POS & ERP", "Ventanilla Única"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
-                    <ShieldCheck className="w-4 h-4 text-electric-cyan" /> {item}
-                  </li>
-                ))}
-              </ul>
-              <Button variant="outline" className="border-electric-cyan/30 text-electric-cyan hover:bg-electric-cyan hover:text-white">
-                Saber más
-              </Button>
-            </GlassCard>
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <GlassCard className="flex flex-col h-full">
+                <div className="mb-6"><Zap className="w-10 h-10 text-electric-cyan" /></div>
+                <h3 className="text-2xl font-bold mb-2">Digitalización</h3>
+                <div className="text-3xl font-bold text-white mb-4">$19.99<span className="text-sm text-gray-400">/mes</span></div>
+                <ul className="mb-8 space-y-4 flex-grow">
+                  {["Facturación Electrónica", "Gestión de Inventarios", "POS & ERP", "Ventanilla Única"].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
+                      <ShieldCheck className="w-4 h-4 text-electric-cyan" /> {item}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="border-electric-cyan/30 text-electric-cyan hover:bg-electric-cyan hover:text-white">
+                  Saber más
+                </Button>
+              </GlassCard>
+            </motion.div>
 
             {/* Evolución */}
-            <div className="p-8 rounded-3xl bg-electric-cyan/10 border-2 border-electric-cyan flex flex-col transform md:-translate-y-4 shadow-[0_0_40px_rgba(6,182,212,0.2)]">
+            <motion.div 
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-8 rounded-3xl bg-electric-cyan/10 border-2 border-electric-cyan flex flex-col transform md:-translate-y-4 shadow-[0_0_40px_rgba(6,182,212,0.2)]"
+            >
               <div className="mb-6 text-electric-cyan font-bold tracking-widest uppercase text-xs">Más Popular</div>
               <div className="mb-6"><TrendingUp className="w-10 h-10 text-white" /></div>
               <h3 className="text-2xl font-bold mb-2 text-white">Evolución</h3>
@@ -101,32 +151,48 @@ export default function Home() {
               <Button variant="white" className="w-full">
                 Ver Planes
               </Button>
-            </div>
+            </motion.div>
 
             {/* Revolución */}
-            <GlassCard className="flex flex-col">
-              <div className="mb-6"><Globe className="w-10 h-10 text-cyan-400" /></div>
-              <h3 className="text-2xl font-bold mb-2">Revolución</h3>
-              <div className="text-3xl font-bold text-white mb-4">$699.99+ <span className="text-sm text-gray-400">/mes</span></div>
-              <ul className="mb-8 space-y-4 flex-grow">
-                {["Inteligencia Artificial", "Auditorías Externas", "Gobierno Corporativo", "Consultores Elite"].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
-                    <ShieldCheck className="w-4 h-4 text-cyan-400" /> {item}
-                  </li>
-                ))}
-              </ul>
-              <Button variant="outline" className="w-full">
-                Contactar Ventas
-              </Button>
-            </GlassCard>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <GlassCard className="flex flex-col h-full">
+                <div className="mb-6"><Globe className="w-10 h-10 text-cyan-400" /></div>
+                <h3 className="text-2xl font-bold mb-2">Revolución</h3>
+                <div className="text-3xl font-bold text-white mb-4">$699.99+ <span className="text-sm text-gray-400">/mes</span></div>
+                <ul className="mb-8 space-y-4 flex-grow">
+                  {["Inteligencia Artificial", "Auditorías Externas", "Gobierno Corporativo", "Consultores Elite"].map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
+                      <ShieldCheck className="w-4 h-4 text-cyan-400" /> {item}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full">
+                  Contactar Ventas
+                </Button>
+              </GlassCard>
+            </motion.div>
           </div>
 
           {/* Specialized Consulting Row (Legacy Sync) */}
-          <div className="mt-16 mb-8 text-center">
+          <motion.div 
+            className="mt-16 mb-8 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
             <h3 className="text-sm font-bold text-electric-cyan uppercase tracking-[0.3em]">Capa de Consultoría Especializada</h3>
-          </div>
+          </motion.div>
           <div className="grid lg:grid-cols-2 gap-8">
-            <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group">
+            <motion.div 
+              className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
               <div className="flex items-start gap-6">
                 <div className="p-4 rounded-2xl bg-electric-cyan/10 text-electric-cyan group-hover:bg-electric-cyan group-hover:text-white transition-colors">
                   <Fingerprint className="w-8 h-8" />
@@ -143,8 +209,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group">
+            </motion.div>
+            <motion.div 
+              className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
               <div className="flex items-start gap-6">
                 <div className="p-4 rounded-2xl bg-electric-cyan/10 text-electric-cyan group-hover:bg-electric-cyan group-hover:text-white transition-colors">
                   <Users className="w-8 h-8" />
@@ -161,34 +232,45 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* 4. Mercado & Tamaño */}
-      <section id="mercado" className="py-24 bg-gradient-to-b from-space-dark to-deep-blue/20">
+      <motion.section 
+        id="mercado" 
+        className="py-24 bg-gradient-to-b from-space-dark to-deep-blue/20"
+        {...fadeIn}
+      >
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-8">Oportunidad de Mercado LATAM (2025-2040)</h2>
               <div className="space-y-6">
                 {[
-                  { label: "TAM (Mercado Total)", value: "$46,258M", width: "w-full", bg: "bg-electric-cyan" },
-                  { label: "SAM (Mercado Accesible)", value: "$17,792M", width: "w-[70%]", bg: "bg-electric-cyan/60" },
-                  { label: "SOM (Mercado Objetivo)", value: "$7,117M", width: "w-[40%]", bg: "bg-electric-cyan/40" },
-                ].map((item) => (
+                  { label: "TAM (Mercado Total)", value: "$46,258M", width: "100%", bg: "bg-electric-cyan" },
+                  { label: "SAM (Mercado Accesible)", value: "$17,792M", width: "70%", bg: "bg-electric-cyan/60" },
+                  { label: "SOM (Mercado Objetivo)", value: "$7,117M", width: "40%", bg: "bg-electric-cyan/40" },
+                ].map((item, i) => (
                   <div key={item.label}>
                     <div className="flex justify-between mb-2">
                       <span className="text-sm font-medium text-gray-300">{item.label}</span>
                       <span className="text-sm font-bold text-white">{item.value}</span>
                     </div>
                     <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden">
-                      <div className={`h-full ${item.bg} ${item.width} rounded-full`}></div>
+                      <motion.div 
+                        className={`h-full ${item.bg} rounded-full`}
+                        initial={{ width: 0 }}
+                        whileInView={{ width: item.width }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: i * 0.2 }}
+                      ></motion.div>
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
             <div className="space-y-12">
               <div className="p-6 rounded-2xl bg-electric-cyan/5 border border-electric-cyan/20">
                 <h3 className="text-xl font-bold mb-4">Metodología de Valoración</h3>
@@ -217,11 +299,15 @@ export default function Home() {
                     { l: "Otros", p: "8%" },
                     { l: "CapEx", p: "7%" },
                     { l: "Inventario", p: "6%" }
-                  ].map((fund) => (
-                    <div key={fund.l} className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-electric-cyan/30 transition-colors">
+                  ].map((fund, i) => (
+                    <motion.div 
+                      key={fund.l} 
+                      className="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-electric-cyan/30 transition-colors"
+                      variants={fadeIn}
+                    >
                       <div className="text-[10px] uppercase text-gray-500 font-bold">{fund.l}</div>
                       <div className="text-lg font-bold text-white">{fund.p}</div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -241,37 +327,48 @@ export default function Home() {
                 <ChevronRight className="w-5 h-5 text-electric-cyan" />
               </GlassCard>
             </div>
-          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 5. Finanzas & Tracción */}
-      <section id="finanzas" className="py-24">
+      <motion.section id="finanzas" className="py-24" {...fadeIn}>
         <div className="container mx-auto px-6">
           <SectionHeader 
             title="Crecimiento y Rentabilidad"
             subtitle="Proyecciones financieras certificadas y tracción real."
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+          >
             {[
               { label: "Valoración Pre-Money", value: "$347.3M", sub: "Equidam Certified" },
               { label: "Revenue Proy. 2027", value: "$157M", sub: "Hiper-crecimiento" },
               { label: "Margen EBITDA 2027", value: "86%", sub: "Año 3 Optimizado" },
               { label: "Revenue 2024", value: "$592K", sub: "Tracción Real" }
             ].map((stat, i) => (
-              <GlassCard key={i} className="p-6 border-l-4 border-l-electric-cyan">
-                <div className="text-xs text-gray-400 uppercase font-bold mb-2">{stat.label}</div>
-                <div className="text-3xl font-extrabold text-white mb-1">{stat.value}</div>
-                <div className="text-xs text-electric-cyan font-medium">{stat.sub}</div>
-              </GlassCard>
+              <motion.div key={i} variants={fadeIn}>
+                <GlassCard className="p-6 border-l-4 border-l-electric-cyan h-full">
+                  <div className="text-xs text-gray-400 uppercase font-bold mb-2">{stat.label}</div>
+                  <div className="text-3xl font-extrabold text-white mb-1">{stat.value}</div>
+                  <div className="text-xs text-electric-cyan font-medium">{stat.sub}</div>
+                </GlassCard>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <div className="p-1 rounded-3xl bg-gradient-to-r from-electric-cyan via-deep-blue to-electric-cyan">
             <div className="bg-space-dark rounded-[22px] p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                >
                   <h3 className="text-2xl md:text-3xl font-bold mb-6">Tracción Hiper-acelerada</h3>
                   <p className="text-gray-400 mb-8 leading-relaxed">
                     GrupoInfinitoIA ha validado su modelo con un **Margen EBITDA del 65%** en 2024. Proyectamos un escalamiento a **$50.3M EBITDA** en 2026 y **$135M** para finales de 2027.
@@ -291,42 +388,156 @@ export default function Home() {
                       Ver Reporte Equidam 2025 <ExternalLink className="w-4 h-4" />
                     </Button>
                   </div>
-                </div>
+                </motion.div>
                 <div className="flex items-center justify-center p-8 bg-white/5 rounded-2xl">
-                   <BarChart3 className="w-48 h-48 text-electric-cyan/20" />
+                   <motion.div
+                     animate={{ 
+                       scale: [1, 1.05, 1],
+                       rotate: [0, 5, 0]
+                     }}
+                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                   >
+                     <BarChart3 className="w-48 h-48 text-electric-cyan/20" />
+                   </motion.div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* 5.5. Testimonios de Éxito (Audio Section) */}
+      <motion.section 
+        id="testimonios" 
+        className="py-24 bg-gradient-to-b from-space-dark to-electric-cyan/5"
+        {...fadeIn}
+      >
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            title="Historias de Impacto"
+            subtitle="Emprendedoras que han transformado su visión en realidad con el ecosistema de Grupo Infinito."
+          />
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {[
+              { 
+                name: "Karla Mendoza", 
+                role: "Fundadora de Bloom Tech", 
+                msg: "Grupo Infinito no solo nos dio las herramientas tecnológicas, sino el acompañamiento estratégico para escalar nuestra operación en toda la región.",
+                audio: "/testimonial_1.mp3"
+              },
+              { 
+                name: "Elena García", 
+                role: "CEO de Innova Gourmet", 
+                msg: "La digitalización con Infinito fue el punto de inflexión para nuestra empresa. Ahora operamos con eficiencia y transparencia total.",
+                audio: "/testimonial_2.mp3"
+              }
+            ].map((testimonial, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+              >
+                <GlassCard className="p-8 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:rotate-12 transition-transform">
+                    <Fingerprint className="w-24 h-24 text-electric-cyan" />
+                  </div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-electric-cyan to-deep-blue flex items-center justify-center text-white font-bold text-2xl shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                        {testimonial.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-white">{testimonial.name}</h4>
+                        <p className="text-sm text-electric-cyan font-medium">{testimonial.role}</p>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-300 italic mb-8 leading-relaxed">
+                      "{testimonial.msg}"
+                    </p>
+
+                    {/* Custom Audio Player Mockup */}
+                    <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all">
+                      <div className="flex items-center gap-4 mb-4">
+                        <button className="w-12 h-12 rounded-full bg-electric-cyan flex items-center justify-center hover:scale-110 transition-transform active:scale-95 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                          <Zap className="w-6 h-6 text-space-dark fill-space-dark" />
+                        </button>
+                        <div className="flex-grow">
+                          <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                            <motion.div 
+                              className="h-full bg-electric-cyan rounded-full"
+                              animate={{ width: ["0%", "45%"] }}
+                              transition={{ duration: 1, delay: 1 }}
+                            ></motion.div>
+                          </div>
+                          <div className="flex justify-between mt-2 text-[10px] font-mono text-gray-500">
+                             <span>0:14</span>
+                             <span>0:32</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-electric-cyan/60 font-medium tracking-widest uppercase">
+                         <span className="animate-pulse flex h-2 w-2 rounded-full bg-electric-cyan opacity-75"></span>
+                         Audio Testimonio.mp3
+                      </div>
+                      <audio src={testimonial.audio} className="hidden" />
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
 
       {/* 6. Universo Infinito - Trust Layer (Legacy Sync) */}
-      <section className="py-24 relative overflow-hidden bg-white/[0.01]">
+      <motion.section 
+        className="py-24 relative overflow-hidden bg-white/[0.01]"
+        {...fadeIn}
+      >
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-electric-cyan/30 to-transparent"></div>
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Universo Infinito</h2>
             <p className="text-gray-400 text-sm tracking-widest uppercase">Legado de confianza y resultados en la región</p>
           </div>
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          <motion.div 
+            className="grid lg:grid-cols-3 gap-8 mb-16"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+          >
             {[
               { label: "Experiencia Acumulada", val: "+20 Años", icon: Zap, desc: "Liderando la formalización y el crecimiento empresarial en la región." },
               { label: "Especialistas Infinitos", val: "+50", icon: Users, desc: "Un equipo multidisciplinario de expertos en finanzas, tecnología y talento." },
               { label: "Proyectos Exitosos", val: "+500", icon: ShieldCheck, desc: "Empresas transformadas, bancarizadas y escaladas con éxito." }
             ].map((item, i) => (
-              <div key={i} className="text-center p-10 rounded-[40px] bg-white/[0.03] border border-white/5 hover:border-electric-cyan/20 transition-all group">
+              <motion.div 
+                key={i} 
+                variants={fadeIn}
+                className="text-center p-10 rounded-[40px] bg-white/[0.03] border border-white/5 hover:border-electric-cyan/20 transition-all group"
+              >
                 <div className="mx-auto w-14 h-14 rounded-2xl bg-electric-cyan/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <item.icon className="w-7 h-7 text-electric-cyan" />
                 </div>
                 <div className="text-4xl font-black text-white mb-2">{item.val}</div>
                 <div className="text-sm font-bold text-electric-cyan uppercase tracking-[0.2em] mb-4">{item.label}</div>
                 <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="p-8 rounded-[32px] bg-electric-cyan/5 border border-electric-cyan/20 flex flex-col md:flex-row items-center justify-between gap-8">
+          <motion.div 
+            className="p-8 rounded-[32px] bg-electric-cyan/5 border border-electric-cyan/20 flex flex-col md:flex-row items-center justify-between gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
             <div className="flex items-center gap-6">
               <div className="p-4 rounded-2xl bg-electric-cyan/20 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
                 <ShieldAlert className="w-8 h-8 text-electric-cyan" />
@@ -339,24 +550,32 @@ export default function Home() {
             <Button variant="outline" size="sm" className="border-electric-cyan/30 text-electric-cyan hover:bg-electric-cyan hover:text-white transition-all">
               Ver Protocolos
             </Button>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* 7. Social Proof (Logos Placeholder) */}
+      {/* 7. Social Proof (Logos Slider placeholder) */}
       <section className="py-16 border-y border-white/5 bg-white/[0.02]">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 overflow-hidden">
           <p className="text-center text-sm font-semibold text-gray-500 uppercase tracking-[0.2em] mb-12">Alianzas Estratégicas y Respaldo</p>
-          <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all">
-            {["Millicom (Tigo)", "BAC Credomatic", "Davivienda", "CONAMYPE", "BID Lab", "Fedecrédito"].map((name) => (
-              <div key={name} className="text-xl md:text-2xl font-bold text-white tracking-tighter">{name}</div>
+          <motion.div 
+            className="flex gap-12 md:gap-20 whitespace-nowrap"
+            animate={{ x: [0, -1000] }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="flex gap-12 md:gap-20 opacity-40 grayscale">
+                {["Millicom (Tigo)", "BAC Credomatic", "Davivienda", "CONAMYPE", "BID Lab", "Fedecrédito"].map((name) => (
+                  <div key={name} className="text-xl md:text-2xl font-bold text-white tracking-tighter">{name}</div>
+                ))}
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 8. Oferta de Inversión */}
-      <section id="propuesta" className="py-24">
+      <motion.section id="propuesta" className="py-24" {...fadeIn}>
         <div className="container mx-auto px-6">
           <SectionHeader 
             title="Ronda de Inversión Actual"
@@ -365,12 +584,17 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-4 gap-6">
             {/* Seed Round */}
-            <div className="p-8 rounded-3xl border-2 border-electric-cyan bg-electric-cyan/5 col-span-1 lg:col-span-1 flex flex-col justify-between">
+            <motion.div 
+              className="p-8 rounded-3xl border-2 border-electric-cyan bg-electric-cyan/5 col-span-1 lg:col-span-1 flex flex-col justify-between"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               <div>
                 <h3 className="text-xl font-bold mb-2">Ronda Semilla</h3>
                 <div className="text-3xl font-bold text-white mb-2">$1,050,000<span className="text-sm font-normal text-gray-400"> USD</span></div>
                 <div className="text-xs text-electric-cyan/80 font-medium mb-6 uppercase tracking-widest">Valuación Post-Money: $348.3M</div>
-                <div className="p-4 rounded-xl bg-electric-cyan/20 mb-6">
+                <div className="p-4 rounded-xl bg-electric-cyan/20 mb-6 text-center">
                   <div className="text-xs font-bold text-electric-cyan uppercase mb-1">Equity</div>
                   <div className="text-2xl font-bold text-white">0.30%</div>
                 </div>
@@ -378,7 +602,7 @@ export default function Home() {
               <Button variant="primary" glow className="w-full py-4 text-base">
                  Solicitar Términos
               </Button>
-            </div>
+            </motion.div>
 
             {/* Expansion GT - 3 options */}
             {[
@@ -386,27 +610,40 @@ export default function Home() {
               { type: "Certificado Mediano Plazo", val: "$150,000", roi: "15% - 25%", term: "36 meses" },
               { type: "Certificado Largo Plazo", val: "$300,000", roi: "18% - 30%", term: "48 meses" }
             ].map((opt, i) => (
-              <GlassCard key={i} className="p-8">
-                 <h3 className="text-lg font-bold mb-2 text-gray-300">{opt.type}</h3>
-                 <div className="text-2xl font-bold text-white mb-6">{opt.val}<span className="text-sm font-normal text-gray-400"> USD</span></div>
-                 <div className="space-y-4 mb-8">
-                    <div className="flex justify-between text-sm">
-                       <span className="text-gray-400">ROI Proyectado</span>
-                       <span className="text-electric-cyan font-bold">{opt.roi}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                       <span className="text-gray-400">Opción de Compra</span>
-                       <span className="text-white">{opt.term}</span>
-                    </div>
-                 </div>
-                 <Button variant="outline" className="w-full">
-                    Me Interesa
-                 </Button>
-              </GlassCard>
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <GlassCard className="p-8 h-full">
+                  <h3 className="text-lg font-bold mb-2 text-gray-300">{opt.type}</h3>
+                  <div className="text-2xl font-bold text-white mb-6">{opt.val}<span className="text-sm font-normal text-gray-400"> USD</span></div>
+                  <div className="space-y-4 mb-8">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">ROI Proyectado</span>
+                        <span className="text-electric-cyan font-bold">{opt.roi}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Opción de Compra</span>
+                        <span className="text-white">{opt.term}</span>
+                      </div>
+                  </div>
+                  <Button variant="outline" className="w-full mt-auto">
+                      Me Interesa
+                  </Button>
+                </GlassCard>
+              </motion.div>
             ))}
           </div>
 
-          <div className="mt-20 p-12 rounded-[40px] bg-gradient-to-br from-space-dark to-electric-cyan/20 border border-white/5 text-center">
+          <motion.div 
+            className="mt-20 p-12 rounded-[40px] bg-gradient-to-br from-space-dark to-electric-cyan/20 border border-white/5 text-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
              <h3 className="text-2xl font-bold mb-6">Estrategia de Salida (Exit)</h3>
              <div className="grid md:grid-cols-3 gap-8">
                 {[
@@ -420,12 +657,12 @@ export default function Home() {
                   </div>
                 ))}
              </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 9. Contact & Next Steps (Council Addition) */}
-      <section id="contacto" className="py-24 relative overflow-hidden">
+      <motion.section id="contacto" className="py-24 relative overflow-hidden" {...fadeIn}>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-electric-cyan/20 to-transparent"></div>
         <div className="container mx-auto px-6">
           <SectionHeader 
@@ -434,7 +671,7 @@ export default function Home() {
           />
           <InvestorForm />
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className="py-12 border-t border-white/10">
@@ -463,9 +700,10 @@ export default function Home() {
               <div>
                 <h5 className="text-white font-bold mb-4 uppercase text-xs tracking-widest">Sede Guatemala</h5>
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  Hub de Expansión Tecnológica,<br />
-                  Ciudad de Guatemala,<br />
-                  Guatemala.
+                  Diagonal 6, 12-42 Zona 10,<br />
+                  Edificio Design Center, Torre I,<br />
+                  Ciudad de Guatemala, Guatemala.<br />
+                  Tel: +(502) 2314-5600
                 </p>
               </div>
             </div>
