@@ -77,7 +77,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-xl md:text-2xl text-electric-cyan/90 font-medium italic mb-8 max-w-3xl mx-auto relative z-20"
         >
-          "Todos tenemos un millón de dólares en la cabeza, <br className="hidden sm:block" /> solo debemos descubrir la manera de bajarlos de ahí"
+          &quot;Todos tenemos un millón de dólares en la cabeza, <br className="hidden sm:block" /> solo debemos descubrir la manera de bajarlos de ahí&quot;
         </motion.p>
 
         {/* Subtitle */}

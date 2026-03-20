@@ -93,8 +93,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-space-dark text-white selection:bg-electric-cyan/30">
-        <div className="gradient-arc" aria-hidden="true" />
-        {children}
+        <div className="relative w-full overflow-x-hidden min-h-screen flex flex-col">
+          <div className="gradient-arc" aria-hidden="true" />
+          {children}
+        </div>
       </body>
     </html>
   );
