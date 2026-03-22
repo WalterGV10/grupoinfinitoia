@@ -47,27 +47,17 @@ export default function Hero() {
       </div>
 
       <motion.div 
-        className="container mx-auto px-6 relative z-10 text-center"
+        className="container 2xl:max-w-[1700px] mx-auto px-6 2xl:px-12 relative z-10 text-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Animated Badge */}
-        <motion.div 
-          variants={itemVariants}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-electric-cyan/40 bg-electric-cyan/10 text-electric-cyan text-xs font-bold tracking-widest uppercase mb-8 relative z-20 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-electric-cyan opacity-80"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-electric-cyan"></span>
-          </span>
-          Ronda Abierta 2025
-        </motion.div>
+
 
         {/* H1 Headline */}
         <motion.h1 
           variants={itemVariants}
-          className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 bg-gradient-to-r from-white via-electric-cyan to-electric-cyan bg-clip-text text-transparent leading-[1.05] relative z-20"
+          className="text-5xl md:text-7xl lg:text-8xl 2xl:text-[9.5rem] font-black tracking-tighter mb-6 2xl:mb-10 bg-gradient-to-r from-white via-electric-cyan to-electric-cyan bg-clip-text text-transparent leading-[1.05] relative z-20"
         >
           Humanizar la Tecnología <br className="hidden md:block" /> en la Región
         </motion.h1>
@@ -75,7 +65,7 @@ export default function Hero() {
         {/* Hook */}
         <motion.p 
           variants={itemVariants}
-          className="text-xl md:text-2xl text-electric-cyan/80 font-medium italic tracking-wide mb-8 max-w-3xl mx-auto relative z-20"
+          className="text-xl md:text-2xl 2xl:text-3xl text-electric-cyan/80 font-medium italic tracking-wide mb-8 2xl:mb-12 max-w-3xl 2xl:max-w-5xl mx-auto relative z-20"
         >
           &quot;Todos tenemos un millón de dólares en la cabeza, <br className="hidden sm:block" /> solo debemos descubrir la manera de bajarlos de ahí&quot;
         </motion.p>
@@ -83,7 +73,7 @@ export default function Hero() {
         {/* Subtitle */}
         <motion.p 
           variants={itemVariants}
-          className="text-lg md:text-xl font-light text-gray-300 mb-10 max-w-4xl mx-auto leading-relaxed relative z-20"
+          className="text-lg md:text-xl 2xl:text-2xl font-light text-gray-300 mb-10 2xl:mb-16 max-w-4xl 2xl:max-w-6xl mx-auto leading-relaxed relative z-20"
         >
           El ecosistema definitivo <span className="text-white font-semibold">B2B exento de impuestos</span> respaldado por <span className="text-electric-cyan font-bold">Millicom TIGO</span> y el <span className="text-white font-semibold">Gobierno de El Salvador</span>.
         </motion.p>

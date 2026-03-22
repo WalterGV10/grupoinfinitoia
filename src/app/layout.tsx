@@ -21,14 +21,6 @@ export const metadata: Metadata = {
     description: "Únete al ecosistema empresarial con mayor proyección de LATAM. Valuación certificada de $347M.",
     url: "https://grupoinfinitoia.com",
     siteName: "GrupoInfinitoIA",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "GrupoInfinitoIA Investment Opportunity",
-      },
-    ],
     locale: "es_SV",
     type: "website",
   },
@@ -36,7 +28,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GrupoInfinitoIA | Futurismo y Finanzas",
     description: "Invierte en el ecosistema B2B que está digitalizando la región.",
-    images: ["/og-image.png"],
   },
 };
 

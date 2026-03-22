@@ -16,7 +16,7 @@ const fadeIn = {
 export default function SolutionSection() {
   return (
     <section id="solución" className="py-24 [content-visibility:auto]">
-      <div className="container mx-auto px-6">
+      <div className="container 2xl:max-w-[1700px] mx-auto px-6 2xl:px-12">
         <motion.div {...fadeIn}>
           <SectionHeader 
             title="Ecosistema Infinito"
@@ -33,8 +33,8 @@ export default function SolutionSection() {
           >
             <GlassCard className="flex flex-col h-full [contain:content]">
               <div className="mb-6"><Zap className="w-10 h-10 text-electric-cyan" /></div>
-              <h3 className="text-3xl font-black tracking-tight mb-2">Digitalización</h3>
-              <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4 tracking-tighter">$19.99<span className="text-lg font-medium text-gray-500">/mes</span></div>
+              <h3 className="text-3xl 2xl:text-4xl font-black tracking-tight mb-2 2xl:mb-4">Digitalización</h3>
+              <div className="text-5xl 2xl:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-4 2xl:mb-8 tracking-tighter">$19.99<span className="text-lg 2xl:text-xl font-medium text-gray-500">/mes</span></div>
               <ul className="mb-8 space-y-4 flex-grow">
                 {["Facturación Electrónica", "Gestión de Inventarios", "POS & ERP", "Ventanilla Única"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
@@ -57,8 +57,8 @@ export default function SolutionSection() {
           >
             <div className="mb-6 text-electric-cyan font-bold tracking-[0.2em] uppercase text-xs animate-pulse">Más Popular</div>
             <div className="mb-6"><TrendingUp className="w-12 h-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]" /></div>
-            <h3 className="text-3xl font-black tracking-tight mb-2 text-white">Evolución</h3>
-            <div className="text-6xl font-black text-white mb-4 tracking-tighter">$49.99+ <span className="text-lg font-medium text-white/60">/mes</span></div>
+            <h3 className="text-3xl 2xl:text-4xl font-black tracking-tight mb-2 text-white">Evolución</h3>
+            <div className="text-6xl 2xl:text-7xl font-black text-white mb-4 2xl:mb-8 tracking-tighter">$49.99+ <span className="text-lg 2xl:text-xl font-medium text-white/60">/mes</span></div>
             <ul className="mb-8 space-y-4 flex-grow">
               {["Gestión Contable", "Gestión Fiscal", "Bancarización", "Créditos MIPYME"].map((item) => (
                 <li key={item} className="flex items-center gap-2 text-white/90 text-sm">
@@ -79,8 +79,8 @@ export default function SolutionSection() {
           >
             <GlassCard className="flex flex-col h-full [contain:content]">
               <div className="mb-6"><Globe className="w-10 h-10 text-cyan-400" /></div>
-              <h3 className="text-3xl font-black tracking-tight mb-2">Revolución</h3>
-              <div className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-400 mb-4 tracking-tighter">$699.99<span className="text-lg font-medium text-gray-500">/mes</span></div>
+              <h3 className="text-3xl 2xl:text-4xl font-black tracking-tight mb-2">Revolución</h3>
+              <div className="text-5xl 2xl:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-cyan-400 mb-4 tracking-tighter">$699.99<span className="text-lg 2xl:text-xl font-medium text-gray-500">/mes</span></div>
               <ul className="mb-8 space-y-4 flex-grow">
                 {["Inteligencia Artificial", "Auditorías Externas", "Gobierno Corporativo", "Consultores Elite"].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-gray-300 text-sm">
@@ -104,7 +104,7 @@ export default function SolutionSection() {
         >
           <h3 className="text-sm font-bold text-electric-cyan uppercase tracking-[0.3em]">Capa de Consultoría Especializada</h3>
         </motion.div>
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8 2xl:gap-16">
           <motion.div 
             className="p-8 rounded-[32px] bg-white/5 border border-white/10 hover:border-electric-cyan/30 transition-all group"
             initial={{ opacity: 0, x: -20 }}

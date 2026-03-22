@@ -18,10 +18,10 @@ export default function MarketSection() {
       className="py-24 bg-gradient-to-b from-space-dark to-deep-blue/20 [content-visibility:auto]"
       {...fadeIn}
     >
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div className="container 2xl:max-w-[1700px] mx-auto px-6 2xl:px-12">
+        <div className="grid md:grid-cols-2 gap-16 2xl:gap-32 items-center">
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8">Oportunidad de Mercado LATAM (2025-2040)</h2>
+            <h2 className="text-3xl md:text-5xl 2xl:text-6xl font-black mb-8 2xl:mb-12">Oportunidad de Mercado LATAM (2025-2040)</h2>
             <div className="space-y-6">
               {[
                 { label: "TAM (Mercado Total)", value: "$46,258M", width: "100%", bg: "bg-electric-cyan" },
@@ -29,9 +29,9 @@ export default function MarketSection() {
                 { label: "SOM (Mercado Objetivo)", value: "$7,117M", width: "40%", bg: "bg-electric-cyan/40" },
               ].map((item, i) => (
                 <div key={item.label}>
-                  <div className="flex justify-between items-end mb-3">
-                    <span className="text-sm font-medium text-gray-400 tracking-wide">{item.label}</span>
-                    <span className="text-2xl font-black text-white tracking-tighter">{item.value}</span>
+                  <div className="flex justify-between items-end mb-3 2xl:mb-4">
+                    <span className="text-sm 2xl:text-base font-medium text-gray-400 tracking-wide">{item.label}</span>
+                    <span className="text-2xl 2xl:text-4xl font-black text-white tracking-tighter">{item.value}</span>
                   </div>
                   <div className="h-3 w-full bg-white/10 rounded-full overflow-hidden [contain:paint]">
                     <motion.div 
@@ -88,7 +88,7 @@ export default function MarketSection() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4 mt-16">
+        <div className="grid grid-cols-2 gap-4 2xl:gap-8 mt-16 2xl:mt-24">
             <GlassCard className="p-6 text-center">
               <div className="text-3xl font-bold text-electric-cyan mb-1">14</div>
               <div className="text-xs text-gray-400 uppercase tracking-wider">Países</div>
